@@ -1,0 +1,15 @@
+{
+  "short_name": "Panmane",
+  "name": "Pants Manager",
+  "icons": [
+    {
+      "src": "/images/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#89e4ee",
+  "theme_color": "#89e4ee",
+  "display": "standalone"
+}
