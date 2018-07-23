@@ -15,23 +15,23 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run: yarn build:prod
 
-#  deploy:
-#    machine:
-#      enabled: true
-#    steps:
-#      - run:
-#          name: Deploy Over SSH
-#          command: |
-#            ssh $SSH_USER@$SSH_HOST bash -c "echo hoge > circleci"
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST bash -c "echo hoge > circleci"
 
-#workflows:
-#  version: 2
-#  build_and_test:
-#    jobs:
-#      - build
-#      - deploy:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
