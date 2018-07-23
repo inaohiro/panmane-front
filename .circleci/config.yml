@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh $SSH_USER@$SSH_HOST bash -c "echo hoge > circleci"
+            ssh $SSH_USER@$SSH_HOST bash -c "sh deploy.sh"
 
 workflows:
   version: 2
