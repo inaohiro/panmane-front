@@ -75,7 +75,12 @@ class Settings extends React.Component<Props, PropsState> {
         </select>
 
         <Link to="/">
-          <button className="btn" type="button" onClick={this.handleClick}>
+          <button
+            className="btn"
+            type="button"
+            onClick={this.handleClick}
+            disabled={this.state.max < this.state.current}
+          >
             OK
           </button>
         </Link>
