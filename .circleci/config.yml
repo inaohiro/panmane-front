@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/src
+    docker:
+      - image: circleci/node:10.7.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run: yarn build:prod
+
+#  deploy:
+#    machine:
+#      enabled: true
+#    steps:
+#      - run:
+#          name: Deploy Over SSH
+#          command: |
+#            ssh $SSH_USER@$SSH_HOST bash -c "echo hoge > circleci"
+
+#workflows:
+#  version: 2
+#  build_and_test:
+#    jobs:
+#      - build
+#      - deploy:
+#          requires:
+#            - build
+#          filters:
+#            branches:
+#              only: master
