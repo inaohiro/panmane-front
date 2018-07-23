@@ -14,8 +14,10 @@ interface Items {
 interface Weather {
   date: string;
   day_of_the_week: string;
-  weatherAM: string;
-  weatherPM: string;
+  weatherAM3: string;
+  weatherAM9: string;
+  weatherPM3: string;
+  weatherPM9: string;
   rainprobability: number;
 }
 

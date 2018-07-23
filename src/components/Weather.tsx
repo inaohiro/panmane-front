@@ -26,13 +26,13 @@ const Weather = ({ count, data, index }: Props) => {
       <div className="week-right">
         <p className="pants-will">Pants Count：{_count}</p>
         <br />
-        {data.weatherAM === "晴れ" ? (
+        {data.weatherAM9 === "晴れ" ? (
           <img src="images/tenki-icon-sunny.png" alt="am-wether" />
         ) : (
           <img src="images/tenki-icon-rain.png" alt="am-wether" />
         )}
         /
-        {data.weatherPM === "晴れ" ? (
+        {data.weatherPM3 === "晴れ" ? (
           <img src="images/tenki-icon-sunny.png" alt="am-wether" />
         ) : (
           <img src="images/tenki-icon-rain.png" alt="am-wether" />
