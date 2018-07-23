@@ -1,0 +1,265 @@
+@charset "UTF-8";
+/* CSS Document */
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", "sans-serif";
+  StatusBar.styleLightContent();
+}
+
+body{
+  background-color: #89e4ee;
+  //background: linear-gradient(120deg, #a5f1fa, #69ced9);
+}
+
+.header{
+  height: 40px;
+  margin: 40px auto 20px;
+  width: 100%;
+}
+
+.place{
+  color: #fff;
+  font-size: 1.7rem;
+  letter-spacing: 0.1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.main{
+  height: 330px;
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.main-bottom{
+  background-color: #89e4ee;
+  height: 80px;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+}
+
+.senzai{
+  float: left;
+  height: 55px;
+  margin: 10px;
+}
+
+.setting{
+  float: right;
+  height: 50px;
+  margin: 15px 20px;
+}
+
+.maincircle{
+  border: 2px solid #fff;
+  display: inline-block;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  text-align:center;
+  vertical-align: middle;
+}
+
+/*
+.pantscircle{
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin:auto;
+  display: inline-block;
+  width: 254px;
+  height: 254px;
+  text-align:center;
+  vertical-align: middle;
+}*/
+
+.pantscount{
+  color: #fff;
+  font-size: 6rem;
+  letter-spacing: -0.2rem;
+  margin-top: 60px;
+  text-align: center;
+}
+
+.pantscount-title{
+  color: #fff;
+  position: absolute;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  margin: 0 auto;
+  top: 50px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.pantspoint{
+  background-color: #217adb;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: bold;
+  height: 20px;
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin:auto;
+  transform: rotate(200deg) translateX(120px);
+  width: 20px;
+  z-index: 10;
+}
+
+.pantspoint p{
+  font-size: 1.2rem;
+  padding-top: 3px;
+  transform: rotateZ(160deg);
+}
+
+.washed{
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  width: 80px;
+}
+
+.datazone{
+  color: #fff;
+  margin-top: 40px;
+  text-align: center;
+  z-index: 30;
+}
+
+.data{
+  padding: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.data span{
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.today-weather{
+  display: inline-block;
+  width: 45%;
+}
+
+.today-weather p{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.today-weather img{
+  display: inline-block;
+  margin: 5px;
+  vertical-align: middle;
+  width: 55px;
+}
+
+.rainy-percent{
+  padding: 10px;
+}
+
+.rainy-percent span{
+  font-size: 130%;
+  font-weight: bold;
+}
+
+
+.weekly-weather{
+  background-color: #fff;
+  padding: 8px 0px;
+  width: 100%;
+}
+
+.weekly-weather-title{
+  color: #999;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 3px auto;
+  text-align: center;
+}
+
+.week-box li{
+  color: #fff;
+  height: 60px;
+  margin: 8px auto;
+  padding: 8px 5px;
+  width: 90%;
+}
+
+.week-box p{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.week-box img{
+  display: inline-block;
+  margin: auto 5px;
+  vertical-align: middle;
+  width: 30px;
+}
+
+.week-left,.week-right{
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.week-left{
+
+  text-align: center;
+  width: 25%;
+}
+
+.week-left p{
+  line-height: 1.3rem;
+}
+
+.week-right{
+  border-left: 1px solid #fff;
+  letter-spacing: 0.1rem;
+  padding-left: 25px;
+  text-align: left;
+  width: 60%;
+}
+
+.week-right span{
+  font-size: 140%;
+  font-weight: bold;
+  //letter-spacing: 0rem;
+}
+
+.pants-will{
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  line-height: 1rem;
+  margin: auto auto 3px 5px;
+}
+
+.orange{
+  background: linear-gradient(#f38331, #e56507);
+}
+
+.yellow{
+  background: linear-gradient(#ffde00, #ffc600);
+}
+
+.blue{
+  background: linear-gradient(#3e69f3, #1244e7);
+}
