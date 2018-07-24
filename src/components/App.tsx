@@ -1,41 +1,51 @@
 import * as React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { set, get } from "idb-keyval";
 import Home from "./Home";
 import "../interfaces";
 import Tutorial from "./Tutorial";
 import Settings from "./Settings";
 
-interface Props {
-  history?: any;
-}
-
 interface State {
-  status: boolean;
+  initial: boolean;
   pants: Pants;
   weather: Weather[];
   location: string;
 }
 
-class App extends React.Component<Props, State> {
+class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
 
-    this.state = {
-      status: false,
-      pants: {
-        max: 0,
-        current: 0
-      },
-      weather: [],
-      location: "Shibuya"
-    };
+    const token = get("item").then((val: any) => {
+      if (!!val) {
+        this.state = {
+          initial: false,
+          pants: JSON.parse(val),
+          weather: [...Array(10)],
+          location: ""
+        };
+      } else {
+        this.state = {
+          initial: true,
+          pants: {
+            max: 0,
+            current: 0
+          },
+          weather: [...Array(10)],
+          location: ""
+        };
+      }
+    });
 
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e: Pants) {
+  handleClick(e: Pants & Location) {
     this.setState(
       {
+        initial: false,
+        location: e.location,
         pants: {
           ...this.state.pants,
           max: e.max,
@@ -43,87 +53,82 @@ class App extends React.Component<Props, State> {
         }
       },
       () => {
-        // update pants count
+        // post pants and location
         fetch("/api/items", {
           method: "POST",
           credentials: "same-origin",
           headers: {
             "Content-Type": "application/json; charset=utf-8"
           },
+          // TODO FIX
           body: JSON.stringify(this.state.pants)
         }).then(() => {
-          // fetch weather data
+          set(
+            "item",
+            JSON.stringify({
+              pants: {
+                max: this.state.pants.max,
+                current: this.state.pants.current
+              }
+            })
+          );
+          // TODO check is this code necessary?
+          /*
           fetch("/api/items", {
             credentials: "same-origin"
           })
             .then((data: any): Data => data.json())
             .then(json => {
               this.setState({
-                status: true,
                 weather: json.data.weather,
                 pants: json.data.pants
               });
             });
+            */
         });
       }
     );
   }
 
   componentDidMount() {
-    // TODO: little bit long, so split these to function
-    // check localStorage, and State
-    if (!!localStorage.getItem("token") && this.state.status === true) {
-      // do nothing
-    } else if (!!localStorage.getItem("token") && this.state.status === false) {
-      fetch("/api/token", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8"
-        },
-        body: JSON.stringify({ token: localStorage.getItem("token") })
-      })
-        .then(() =>
-          // fetch data
-          fetch("/api/items", {
-            credentials: "same-origin"
-          })
-            .then((data: any): Data => data.json())
-            .then(json => {
-              this.setState({
-                status: true,
-                weather: json.data.weather,
-                pants: json.data.pants
-              });
-            })
-        )
-        .catch(e => {
-          console.log(e);
-        });
-    } else if (!localStorage.getItem("token") && this.state.status == true) {
-      fetch("/api/token", {
-        method: "POST",
+    // register token to session cookie
+    fetch("/api/token", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({ token: localStorage.getItem("token") })
+    })
+      .then((data: any): Token => data.json())
+      .then(json => {
+        set("token", json.token);
+      });
+
+    if (!this.state.initial) {
+      // TODO: get weather api
+      fetch("/api/items", {
         credentials: "same-origin"
       })
-        .then(data => data.json())
-        .then(json => localStorage.setItem("token", json.token))
-        .then(() => {
-          /* redirect to app ? */
-        })
-        .catch(e => {
-          /* this should be react error handling */
-          console.log(e);
+        .then((data: any): Data => data.json())
+        .then(json => {
+          this.setState({
+            weather: json.data.weather
+          });
         });
-    } else {
-      fetch("/api/token", {
-        method: "POST",
+    }
+
+    // user somehow doesnt have pants
+    if (!this.state.initial && this.state.pants.max === 0) {
+      // TODO: get pants api
+      fetch("/api/items", {
         credentials: "same-origin"
       })
-        .then((data: any): Token => data.json())
-        .then(json => localStorage.setItem("token", json.token))
-        .catch(e => {
-          /* this should be react error handling */
-          console.log(e);
+        .then((data: any): Data => data.json())
+        .then(json => {
+          this.setState({
+            pants: json.data.pants
+          });
         });
     }
   }
@@ -132,7 +137,9 @@ class App extends React.Component<Props, State> {
     return (
       <Router>
         <>
-          {this.state.status ? (
+          {this.state.initial ? (
+            <Route exact path="/" render={() => <Tutorial />} />
+          ) : (
             <Route
               exact
               path="/"
@@ -144,8 +151,6 @@ class App extends React.Component<Props, State> {
                 />
               )}
             />
-          ) : (
-            <Route exact path="/" render={() => <Tutorial />} />
           )}
           <Route
             path="/settings"

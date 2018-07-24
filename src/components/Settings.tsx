@@ -1,19 +1,20 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import App from "./App";
+import "../interfaces";
 
+interface State {
+  max: number;
+  current: number;
+  location: string;
+}
 interface Props {
-  handleClick: (e: Pants) => void;
+  handleClick: (e: State) => void;
   max: number;
   current: number;
 }
 
-interface PropsState {
-  max: number;
-  current: number;
-}
-
-class Settings extends React.Component<Props, PropsState> {
+class Settings extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.handleChange1 = this.handleChange1.bind(this);
@@ -22,7 +23,8 @@ class Settings extends React.Component<Props, PropsState> {
 
     this.state = {
       max: this.props.max,
-      current: this.props.current
+      current: this.props.current,
+      location: "Shibuya"
     };
   }
 
@@ -37,7 +39,8 @@ class Settings extends React.Component<Props, PropsState> {
   handleClick() {
     this.props.handleClick({
       max: this.state.max,
-      current: this.state.current
+      current: this.state.current,
+      location: this.state.location
     });
   }
 
@@ -84,6 +87,7 @@ class Settings extends React.Component<Props, PropsState> {
             OK
           </button>
         </Link>
+
         <Route path="/" compknent={App} />
       </>
     );
