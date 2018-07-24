@@ -1,3 +1,5 @@
+// data を cache に保存，off-line 対応
+//
 // var cacheName = "weather2018072401";
 // var filesToCache = [
 //   "/",
@@ -36,3 +38,14 @@
 //   );
 // });
 //
+
+// 通知
+// push event handler
+self.addEventListener("push", function(event) {
+  event.waitUntil(
+    self.registration.showNotification(event.data.json().notification.title, {
+      body: event.data.json().notification.body,
+      icon: "/icon.png"
+    })
+  );
+});

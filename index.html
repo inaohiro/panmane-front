@@ -15,9 +15,81 @@
     <!-- loading (svg) icon -->
 
     <div id="example"></div>
-
-    <script src="./dist/bundle.js"></script>
     <noscript>This page uses JavaScript.</noscript>
+
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-messaging.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAxFDFtSxlb_46Y0fINru1UB6WhstqhPF4",
+            authDomain: "pantsmanager-c694b.firebaseapp.com",
+            databaseURL: "https://pantsmanager-c694b.firebaseio.com",
+            projectId: "pantsmanager-c694b",
+            storageBucket: "pantsmanager-c694b.appspot.com",
+            messagingSenderId: "958465683662"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="./dist/bundle.js"></script>
+
+    <!-- とりあえずここにかくけど， settings とかにあるとよいかも -->
+    <script>
+        // register service workder 
+        // sw.js を使うので， useServiceWorkder してる, 別に firebase-messaging-sw.js でもよい
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').then(function (reg) {
+                messaging.useServiceWorker(reg);
+            })
+        }
+
+        const messaging = firebase.messaging();
+
+        // generate したやつ
+        messaging.usePublicVapidKey("");
+
+        // This should call by addEventListener click
+        messaging.requestPermission().then(function () {
+            console.log("Notification permission granted.")
+        }).catch(function (err) {
+            console.log("Unable to get permission to notify.", err)
+        })
+
+        // currentToken を 通知を出すときに使うので， sendTokenToServer を実行している
+        // 通知を試したいなら console.log とかで表示するのもあり
+        messaging.getToken().then(function (currentToken) {
+            if (currentToken) {
+                sendTokenToServer(currentToken);
+                updateUIForPushEnabled(currentToken);
+            } else {
+                console.log("No Instance ID token available. Request permission to generate one.");
+
+                updateUIForPushPermissionRequired();
+                setTokenSentToServer(false);
+            }
+        }).catch(function (err) {
+            console.log("An error ocurred while retrieving token.", err);
+            showToken("Error retrieving Instance ID token.", err);
+            setTokenSentToServer(false);
+        })
+
+        // いつ token は refresh されるんだ ...
+        // Callback fired if Instance ID token is updated.
+        messaging.onTokenRefresh(function () {
+            messaging.getToken().then(function (refreshedToken) {
+                console.log('Token refreshed.');
+                // Indicate that the new Instance ID token has not yet been sent to the
+                // app server.
+                setTokenSentToServer(false);
+                // Send Instance ID token to app server.
+                sendTokenToServer(refreshedToken);
+                // ...
+            }).catch(function (err) {
+                console.log('Unable to retrieve refreshed token ', err);
+                showToken('Unable to retrieve refreshed token ', err);
+            });
+        });
+    </script>
 </body>
 
 </html>
