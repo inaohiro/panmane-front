@@ -18,6 +18,8 @@ interface Weather {
   weatherAM9: string;
   weatherPM3: string;
   weatherPM9: string;
+  rainprobabilityAM9: number;
+  rainprobabilityPM3: number;
   rainprobability: number;
 }
 
