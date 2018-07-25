@@ -22,10 +22,25 @@ body{
   width: 95%;
 }
 
+.header{
+  height: 40px;
+  margin: 30px auto 20px; 
+  width: 100%;
+}
+
+.main-title{
+  font-size: 1.7rem;
+  letter-spacing: 0.1rem;
+  margin: 0 auto;
+  text-align: center;
+  width: 100px;
+}
+
 .stepimg{
   margin: 3% auto 1%;
   width: 100%;
 }
+
 
 .inner{
   margin: 0 auto;
@@ -46,9 +61,6 @@ body{
 .pants-selectbox img{
   width: 60%;
 }
-
-
-
 
 .cp_ipselect {
 overflow: hidden;
