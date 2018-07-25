@@ -45,6 +45,9 @@ class Settings extends React.Component<Props, PropsState> {
     return (
       <>
       
+      <div class="header">
+        <div class="main-title">設定</div>
+      </div>
       
       <div className="inner">
         <img src="images/step1.png" className="stepimg"/>
@@ -54,7 +57,7 @@ class Settings extends React.Component<Props, PropsState> {
           <img src="images/pants-icon-max.png"/>
           <div className="cp_ipselect cp_sl01">
             <select value={this.state.max} onChange={this.handleChange1}>
-              <option value="">全てのパンツ枚数</option>
+              <option value="" hidden>全てのパンツ枚数</option>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -72,7 +75,7 @@ class Settings extends React.Component<Props, PropsState> {
         <li>
           <img src="images/pants-icon-clean.png"/>
           <div className="cp_ipselect cp_sl01">
-            <select onChange={this.handleChange2}>
+            <select value={this.state.clean} onChange={this.handleChange2}>
               <option value="" hidden>綺麗なパンツ枚数</option>
               <option value="0">0</option>
               <option value="1">1</option>
