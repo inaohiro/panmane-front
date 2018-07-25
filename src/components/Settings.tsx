@@ -120,6 +120,8 @@ class Settings extends React.Component<Props, PropsState> {
           <option value="meguro">目黒区</option>
         </select>
       </div>
+      <div className="here"><img src="images/nowplace.png" class="nowplace">&nbsp;現在地から</div>
+      </div>
     </div>
     </div>
       <Link to="/">
