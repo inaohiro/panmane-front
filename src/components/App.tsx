@@ -23,7 +23,7 @@ class App extends React.Component<{}, State> {
     super(props);
 
     const local_token = JSON.parse(localStorage.getItem("token"));
-    const local_pants = JSON.parse(localStorage.getItem("pants"));
+    const local_pants = JSON.parse(localStorage.getItem("item"));
 
     // if token is not exist (!null -> true), initial should be true
     this.state = {
