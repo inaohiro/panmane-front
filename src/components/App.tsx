@@ -67,7 +67,7 @@ class App extends React.Component<{}, State> {
           )
         }).then(() => {
           // fetch weather data
-          fetch("/api/weather", {
+          fetch("/api/weathers", {
             credentials: "same-origin"
           }).then((data: any): WeatherData => data.json())
             .then(json => {
@@ -124,7 +124,7 @@ class App extends React.Component<{}, State> {
 
     // when not first access
     if (!this.state.initial) {
-      fetch("/api/weather", {
+      fetch("/api/weathers", {
         credentials: "same-origin"
       })
         .then((data: any): WeatherData => data.json())
