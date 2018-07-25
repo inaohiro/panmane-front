@@ -63,7 +63,7 @@ class App extends React.Component<{}, State> {
           },
           body: JSON.stringify({
             item: this.state.pants,
-            location: this.state.location
+            location: this.state.location.en
           })
         }).then(() => {
           // store data to localStorage
