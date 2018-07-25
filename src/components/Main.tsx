@@ -14,7 +14,7 @@ class Main extends React.Component<Props, {}> {
   }
 
   handleClick() {
-    // do something
+    this.props.handleClick();
   }
 
   render() {
@@ -26,9 +26,9 @@ class Main extends React.Component<Props, {}> {
           <p className="min">min</p><p className="max">max</p>
         </div>
         <div className="main-bottom">
-          <img src="images/push.png" id="wash" alt="洗濯完了！" className="washed" />
+          <img onClick={this.handleClick} src="images/push.png" id="wash" alt="洗濯完了！" className="washed" />
           <img src="images/senzai.png" alt="洗剤" className="senzai" />
-          <img id="settings-btn" src="images/setting.png" alt="設定" className="setting" />
+          <img src="images/setting.png" alt="設定" className="setting" />
         </div>
       </div>
 
