@@ -9,21 +9,14 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-self.addEventListener("push", function (event) {
-  event.waitUntil(
-    self.registration.showNotification(event.data.json().notification.title, {
-      body: "Push notifiaction!!!",
-      icon: "/images/icons-192png"
-    })
-  );
-});
-
-// if the app running in foreground 
-messaging.onMessage(function (payload) {
-  console.log('Message received. ', payload);
-  // ...
-});
-
+// self.addEventListener("push", function (event) {
+//   event.waitUntil(
+//     self.registration.showNotification(event.data.json().notification.title, {
+//       body: "Push notifiaction!!!",
+//       icon: "/images/icons-192png"
+//     })
+//   );
+// });
 
 // if the app runninng in background
 messaging.setBackgroundMessageHandler(function (payload) {
@@ -31,10 +24,19 @@ messaging.setBackgroundMessageHandler(function (payload) {
   // Customize notification here
   var notificationTitle = 'My Push Notification!!!';
   var notificationOptions = {
-    body: 'Message body.',
+    body: 'Hello. This is Pants manager',
     icon: '/images/icons-192.png'
   };
 
   return self.registration.showNotification(notificationTitle,
     notificationOptions);
 });
+
+
+// self.addEventListener('notificationclick', function (event) {
+//   const clickedNotification = event.notification;
+//   clickedNotification.close();
+// 
+//   // const promiseChain = doSomething();
+//   event.waitUntil(promiseChain);
+// })

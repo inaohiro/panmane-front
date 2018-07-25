@@ -37,12 +37,12 @@
     <script>
         // register service workder 
         // sw.js を使うので， useServiceWorkder してる, 別に firebase-messaging-sw.js でもよい
+        const messaging = firebase.messaging();
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js').then(function (reg) {
                 messaging.useServiceWorker(reg);
             })
         }
-        const messaging = firebase.messaging();
 
         // generate したやつ
         messaging.usePublicVapidKey("BCVrut9qmEq-vLD9kb56Pe0lcLWxUu3TLiPj2EAcn-kAaCi5jFoGWNlOoDFuil7Rx1SIHrJ7e07pNjsHYYgcio4");
