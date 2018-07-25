@@ -54,7 +54,7 @@ class Settings extends React.Component<Props, PropsState> {
           <img src="images/pants-icon-max.png"/>
           <div className="cp_ipselect cp_sl01">
             <select value={this.state.max} onChange={this.handleChange1}>
-              <option value="" hidden>全てのパンツ枚数</option>
+              <option value="">全てのパンツ枚数</option>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
