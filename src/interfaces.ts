@@ -27,3 +27,7 @@ interface Pants {
   max: number;
   current: number;
 }
+
+interface Location {
+  location: string;
+}
