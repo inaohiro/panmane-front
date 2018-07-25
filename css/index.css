@@ -16,8 +16,24 @@ body{
 
 .header{
   height: 40px;
-  margin: 40px auto 20px;
+  margin: 30px auto 20px; 
   width: 100%;
+}
+
+.chart {
+  position: absolute;
+  margin: 0 auto;
+  width: 240px;
+  height: 240px;
+}
+
+.graph {
+  margin: 0 auto;
+  width: 240px;
+}
+
+.pantsmater {
+  z-index: 10;
 }
 
 .place{
@@ -29,74 +45,68 @@ body{
 }
 
 .main{
-  height: 330px;
-  text-align: center;
+  height: 320px;
   width: 100%;
   position: relative;
 }
 
-.main-bottom{
-  background-color: #89e4ee;
-  height: 80px;
+.min{
   position: absolute;
-  bottom: 40px;
+  bottom: 85px;
+  left: 100px;
+  color: #fff;
+  letter-spacing: 0.1rem;
+}
+
+.max{
+  position: absolute;
+  bottom: 85px;
+  right: 100px;
+  color: #fff;
+  letter-spacing: 0.1rem;
+}
+
+.main-bottom{
+  height: 100px;
+  position: absolute;
+  bottom: 20px;
   left: 0;
   width: 100%;
   z-index: 20;
 }
 
+.washed{
+  left: 0;
+  cursor: pointer;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  width: 80px;
+}
+
 .senzai{
-  float: left;
-  height: 55px;
-  margin: 10px;
+  position: absolute;
+  bottom: 0px;
+  cursor: pointer;
+  left: 15px;
+  height: 60px;
 }
 
 .setting{
-  float: right;
-  height: 50px;
-  margin: 15px 20px;
-}
-
-.maincircle{
-  border: 2px solid #fff;
-  display: inline-block;
-  width: 230px;
-  height: 230px;
-  border-radius: 50%;
-  text-align:center;
-  vertical-align: middle;
-}
-
-/*
-.pantscircle{
   position: absolute;
-  top:0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin:auto;
-  display: inline-block;
-  width: 254px;
-  height: 254px;
-  text-align:center;
-  vertical-align: middle;
-}*/
-
-.pantscount{
-  color: #fff;
-  font-size: 6rem;
-  letter-spacing: -0.2rem;
-  margin-top: 60px;
-  text-align: center;
+  bottom: 0px;
+  cursor: pointer;
+  right: 20px;
+  height: 50px;
 }
 
 .pantscount-title{
   color: #fff;
   position: absolute;
-  font-weight: bold;
-  letter-spacing: 0.1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
   margin: 0 auto;
-  top: 50px;
+  top: 53px;
   left: 0;
   right: 0;
   text-align: center;
@@ -117,20 +127,6 @@ body{
   transform: rotate(200deg) translateX(120px);
   width: 20px;
   z-index: 10;
-}
-
-.pantspoint p{
-  font-size: 1.2rem;
-  padding-top: 3px;
-  transform: rotateZ(160deg);
-}
-
-.washed{
-  left: 0;
-  margin: 0 auto;
-  position: absolute;
-  right: 0;
-  width: 80px;
 }
 
 .datazone{
@@ -182,15 +178,16 @@ body{
 
 .weekly-weather{
   background-color: #fff;
-  padding: 8px 0px;
+  padding: 8px 0px; 
   width: 100%;
 }
 
 .weekly-weather-title{
   color: #999;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin: 3px auto;
+  letter-spacing: 0.1rem;
+  margin: 10px auto;
   text-align: center;
 }
 
@@ -209,9 +206,8 @@ body{
 
 .week-box img{
   display: inline-block;
-  margin: auto 5px;
   vertical-align: middle;
-  width: 30px;
+  height: 23px;
 }
 
 .week-left,.week-right{
@@ -221,35 +217,44 @@ body{
 }
 
 .week-left{
-
   text-align: center;
-  width: 25%;
+  width: 24%;
 }
 
 .week-left p{
-  line-height: 1.3rem;
+  font-size: 0.9rem;
+  line-height: 1.4rem;
 }
 
 .week-right{
-  border-left: 1px solid #fff;
+  border-left: 1px solid #fff; 
   letter-spacing: 0.1rem;
-  padding-left: 25px;
+  height: 100%;
+  padding-left: 7%;
   text-align: left;
   width: 60%;
 }
 
+.slash{
+  margin: 0 4%;
+}
+
 .week-right span{
-  font-size: 140%;
+  font-size: 130%;
   font-weight: bold;
-  //letter-spacing: 0rem;
 }
 
 .pants-will{
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.1rem;
+  font-size: 0.7rem;
   line-height: 1rem;
-  margin: auto auto 3px 5px;
+  margin: auto auto 3px 1%;
+  
+}
+
+.pants-will span{
+  font-size: 0.9rem;
+  font-weight: 600;
+  vertical-align: top;
 }
 
 .orange{
@@ -257,9 +262,36 @@ body{
 }
 
 .yellow{
-  background: linear-gradient(#ffde00, #ffc600);
+  background: linear-gradient(#ffd200, #f4b801);
+}
+
+.green{
+  background: linear-gradient(#50c855, #30ab36);
 }
 
 .blue{
-  background: linear-gradient(#3e69f3, #1244e7);
+  background: linear-gradient(#4e95e5, #2b79d1);
 }
+
+/*
+.blue{
+  background: linear-gradient(#3e69f3, #3e89dd);
+}
+
+
+.orange{
+  background: linear-gradient(#f7623a, #e04419);
+}
+
+.yellow{
+  background: linear-gradient(#ffd800, #f1bc04);
+}
+
+.green{
+  background: linear-gradient(#53d559, #30ab36);
+}
+
+.blue{
+  background: linear-gradient(#486de1, #1244e7);
+}
+*/
