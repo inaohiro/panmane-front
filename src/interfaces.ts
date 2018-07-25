@@ -2,14 +2,26 @@ interface Token {
   token: string;
 }
 
-interface Data {
-  data: Items;
+interface WeatherData {
+  data: WeatherContainer;
 }
 
-interface Items {
+interface WeatherContainer {
   weather: Weather[];
+}
+
+interface PantsData {
+  data: PantsContainer;
+}
+
+interface PantsContainer {
   pants: Pants;
 }
+
+// interface Items {
+//   weather: Weather[];
+//   pants: Pants;
+// }
 
 interface Weather {
   date: string;
@@ -18,10 +30,21 @@ interface Weather {
   weatherAM9: string;
   weatherPM3: string;
   weatherPM9: string;
+  rainprobabilityAM9: number;
+  rainprobabilityPM3: number;
   rainprobability: number;
 }
 
 interface Pants {
   max: number;
   current: number;
+}
+
+interface LocatoinContainer {
+  location: Location;
+}
+
+interface Location {
+  en: string;
+  ja: string;
 }

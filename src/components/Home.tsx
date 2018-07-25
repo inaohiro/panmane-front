@@ -5,23 +5,23 @@ import WeeklyWeather from "./WeeklyWeather";
 import "../interfaces";
 
 interface State {
-  location: string;
+  location: Location;
   weather: Weather[];
   pants: Pants;
 }
 
 interface Props {
   s: State;
-  handleClick: (e: Pants) => void;
+  handleClickWashed: () => void;
 }
 
-const Home = ({ s }: Props) => (
+const Home = ({ s, handleClickWashed }: Props) => (
   <>
-    <Header place={s.location} />
+    <Header />
 
-    <Main current={s.pants.current} />
+    <Main handleClickWashed={handleClickWashed} pants={s.pants} />
 
-    <WeeklyWeather count={s.pants.current} weather={s.weather} />
+    <WeeklyWeather location_ja={s.location.ja} count={s.pants.current} weather={s.weather} />
   </>
 );
 

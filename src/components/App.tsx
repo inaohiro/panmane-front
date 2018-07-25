@@ -5,37 +5,48 @@ import "../interfaces";
 import Tutorial from "./Tutorial";
 import Settings from "./Settings";
 
-interface Props {
-  history?: any;
-}
-
 interface State {
-  status: boolean;
+  initial: boolean;
   pants: Pants;
   weather: Weather[];
-  location: string;
+  location: Location;
 }
 
-class App extends React.Component<Props, State> {
+interface SettingsParams {
+  max: number;
+  current: number;
+  location_en: string;
+}
+
+class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
 
+    const local_token = JSON.parse(localStorage.getItem("token"));
+    const local_pants = JSON.parse(localStorage.getItem("item"));
+    const local_location = JSON.parse(localStorage.getItem("location"));
+
+    // if token is not exist (!null -> true), initial should be true
     this.state = {
-      status: false,
-      pants: {
-        max: 0,
-        current: 0
-      },
+      initial: !local_token || false,
+      pants: local_pants && local_pants.pants || { max: 0, current: 0 },
       weather: [],
-      location: "Shibuya"
-    };
+      location: local_location && local_location.location || { en: "", ja: "" }
+    }
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleClickWashed = this.handleClickWashed.bind(this);
   }
 
-  handleClick(e: Pants) {
+  // Settings button is clicked
+  handleClick(e: SettingsParams) {
     this.setState(
       {
+        initial: false,
+        location: {
+          ...this.state.location,
+          en: e.location_en
+        },
         pants: {
           ...this.state.pants,
           max: e.max,
@@ -43,88 +54,127 @@ class App extends React.Component<Props, State> {
         }
       },
       () => {
-        // update pants count
+        // post pants and location
         fetch("/api/items", {
           method: "POST",
           credentials: "same-origin",
           headers: {
             "Content-Type": "application/json; charset=utf-8"
           },
-          body: JSON.stringify(this.state.pants)
+          body: JSON.stringify({
+            item: this.state.pants,
+            location: this.state.location.en
+          })
+        }).then(() => {
+          // store data to localStorage
+          localStorage.setItem("item",
+            JSON.stringify({
+              pants: this.state.pants
+            }))
+          localStorage.setItem("location",
+            JSON.stringify({
+              location: this.state.location
+            })
+          )
         }).then(() => {
           // fetch weather data
-          fetch("/api/items", {
+          fetch("/api/weathers", {
             credentials: "same-origin"
-          })
-            .then((data: any): Data => data.json())
+          }).then((data: any): WeatherData => data.json())
             .then(json => {
               this.setState({
-                status: true,
                 weather: json.data.weather,
-                pants: json.data.pants
-              });
-            });
-        });
+                location: {
+                  ...this.state.location,
+                  ja: (String)(json.data.weather.slice(-1))
+                }
+              })
+            })
+        })
+
       }
     );
   }
 
-  componentDidMount() {
-    // TODO: little bit long, so split these to function
-    // check localStorage, and State
-    if (!!localStorage.getItem("token") && this.state.status === true) {
-      // do nothing
-    } else if (!!localStorage.getItem("token") && this.state.status === false) {
-      fetch("/api/token", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8"
-        },
-        body: JSON.stringify({ token: localStorage.getItem("token") })
-      })
-        .then(() =>
-          // fetch data
-          fetch("/api/items", {
-            credentials: "same-origin"
+  // when washed button is clicked
+  handleClickWashed() {
+    this.setState({
+      pants: {
+        ...this.state.pants,
+        current: this.state.pants.max
+      },
+    },
+      () => {
+        // update pants count
+        fetch("/api/update", {
+          method: "POST",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8"
+          },
+          body: JSON.stringify({
+            item: {
+              current: this.state.pants.current
+            }
           })
-            .then((data: any): Data => data.json())
-            .then(json => {
-              this.setState({
-                status: true,
-                weather: json.data.weather,
-                pants: json.data.pants
-              });
-            })
-        )
-        .catch(e => {
-          console.log(e);
-        });
-    } else if (!localStorage.getItem("token") && this.state.status == true) {
-      fetch("/api/token", {
-        method: "POST",
-        credentials: "same-origin"
-      })
-        .then(data => data.json())
-        .then(json => localStorage.setItem("token", json.token))
-        .then(() => {
-          /* redirect to app ? */
         })
-        .catch(e => {
-          /* this should be react error handling */
-          console.log(e);
-        });
-    } else {
-      fetch("/api/token", {
-        method: "POST",
+          .then(() => {
+            localStorage.setItem("item", JSON.stringify({ pants: this.state.pants }))
+          })
+      })
+  }
+
+
+  componentDidMount() {
+    // register token to session cookie
+    const local_token = JSON.parse(localStorage.getItem("token"));
+    fetch("/api/token", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: local_token && JSON.stringify({ token: local_token.token }) || ""
+    })
+      .then((data: any): Token => data.json())
+      .then(json => {
+        // TODO: check local_token.token === json.token
+        localStorage.setItem("token", JSON.stringify({ token: json.token }));
+      })
+
+    // when not first access
+    if (!this.state.initial) {
+      fetch("/api/weathers", {
         credentials: "same-origin"
       })
-        .then((data: any): Token => data.json())
-        .then(json => localStorage.setItem("token", json.token))
-        .catch(e => {
-          /* this should be react error handling */
+        .then((data: any): WeatherData => data.json())
+        .then(json => {
+          this.setState({
+            weather: json.data.weather
+            // location.ja
+          })
+        })
+    }
+
+    // user somehow doesn't have pants
+    if (!this.state.initial && this.state.pants.max === 0) {
+      fetch("/api/items", {
+        credentials: "same-origin"
+      })
+        .then((data: any): PantsData => data.json())
+        .then(json => {
+          this.setState({
+            pants: json.data.pants
+          })
+        })
+        .then(() => {
+          localStorage.setItem("item", JSON.stringify({ pants: this.state.pants }))
+        })
+        .then(() => {
+          console.log("why user does not have pants ???")
+        }).catch((e) => {
           console.log(e);
-        });
+        })
     }
   }
 
@@ -132,21 +182,21 @@ class App extends React.Component<Props, State> {
     return (
       <Router>
         <>
-          {this.state.status ? (
-            <Route
-              exact
-              path="/"
-              render={routeProps => (
-                <Home
-                  {...routeProps}
-                  s={this.state}
-                  handleClick={this.handleClick}
-                />
-              )}
-            />
-          ) : (
+          {this.state.initial ? (
             <Route exact path="/" render={() => <Tutorial />} />
-          )}
+          ) : (
+              <Route
+                exact
+                path="/"
+                render={routeProps => (
+                  <Home
+                    {...routeProps}
+                    s={this.state}
+                    handleClickWashed={this.handleClickWashed}
+                  />
+                )}
+              />
+            )}
           <Route
             path="/settings"
             render={routeProps => (
@@ -155,6 +205,7 @@ class App extends React.Component<Props, State> {
                 handleClick={this.handleClick}
                 max={this.state.pants.max}
                 current={this.state.pants.current}
+                location_en={this.state.location.en}
               />
             )}
           />
