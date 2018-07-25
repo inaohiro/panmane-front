@@ -19,7 +19,6 @@ const Weather = ({ count, data, index }: Props) => {
       bgcolor = "green";
     }else{
       bgcolor = "blue";
-    }
   }
 
   return (
