@@ -16,9 +16,9 @@ const Main = ({ current }: Props) => (
       <p className="min">min</p><p class="max">max</p>
     </div>
     <div className="main-bottom">
-      <img src="images/push.png" id="wash" alt="洗濯完了！" className="washed">
-      <img src="images/senzai.png" alt="洗剤" className="senzai">
-      <img src="images/setting.png" alt="設定" className="setting">
+      <img src="images/push.png" id="wash" alt="洗濯完了！" className="washed"/>
+      <img src="images/senzai.png" alt="洗剤" className="senzai"/>
+      <img src="images/setting.png" alt="設定" className="setting"/>
     </div>
   </div>
   
