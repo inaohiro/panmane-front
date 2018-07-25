@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import * as $ from "jquery";
 import "../interfaces";
 
 interface Props {
@@ -16,6 +17,9 @@ class Main extends React.Component<Props, {}> {
 
   handleClick() {
     this.props.handleClickWashed();
+    $("img[src='images/push.png']").on("click", function () {
+      console.log("hogehoge");
+    })
   }
 
   render() {
@@ -35,7 +39,6 @@ class Main extends React.Component<Props, {}> {
           </div>
         </div>
       </div>
-
     )
   }
 
@@ -43,18 +46,3 @@ class Main extends React.Component<Props, {}> {
 
 
 export default Main;
-
-{/*
-      <div className="main">
-        <div className="graph">
-          <div id="progressive-circle01" className="chart pantsmater"></div>
-          <div id="progressive-circle02" className="chart"></div>
-          <p className="min">min</p><p className="max">max</p>
-        </div>
-        <div className="main-bottom">
-          <img onClick={this.handleClick} src="images/push.png" id="wash" alt="洗濯完了！" className="washed" />
-          <img src="images/senzai.png" alt="洗剤" className="senzai" />
-          <img src="images/setting.png" alt="設定" className="setting" />
-        </div>
-      </div>
-      */}
