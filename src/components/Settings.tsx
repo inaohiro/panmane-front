@@ -44,8 +44,10 @@ class Settings extends React.Component<Props, PropsState> {
   render() {
     return (
       <>
+        <img src="images/pants-icon-clean.png"/>
+        <div className="cp_ipselect cp_sl01">
         <select value={this.state.max} onChange={this.handleChange1}>
-          <option value="">Please fill in your total pants</option>
+          <option value="">全てのパンツ枚数</option>
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -58,9 +60,10 @@ class Settings extends React.Component<Props, PropsState> {
           <option value="9">9</option>
           <option value="10">10</option>
         </select>
+      </div>
 
         <select value={this.state.current} onChange={this.handleChange2}>
-          <option value="">Please fill in your clean pants</option>
+          <option value="">綺麗なパンツ枚数</option>
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
