@@ -16,11 +16,13 @@ class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
 
-    const token = JSON.parse(localStorage.getItem("token"));
+    const token = JSON.parse(localStorage.getItem("token")).token;
+    const pants = JSON.parse(localStorage.getItem("pants")).pants;
+
     if (!!token) {
       this.state = {
         initial: false,
-        pants: JSON.parse(token),
+        pants: pants || { max: 0, current: 0 },
         weather: [...Array(10)],
         location: ""
       };
@@ -113,7 +115,7 @@ class App extends React.Component<{}, State> {
 
   componentDidMount() {
     // register token to session cookie
-    const token = JSON.parse(localStorage.getItem("token"));
+    const token = JSON.parse(localStorage.getItem("token")).token;
     fetch("/api/token", {
       method: "POST",
       credentials: "same-origin",
