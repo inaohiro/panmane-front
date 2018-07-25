@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../interfaces";
 
 interface Props {
-  handleClick: () => void;
+  handleClickWashed: () => void;
   pants: Pants;
 }
 
@@ -15,7 +15,7 @@ class Main extends React.Component<Props, {}> {
   }
 
   handleClick() {
-    this.props.handleClick();
+    this.props.handleClickWashed();
   }
 
   render() {
@@ -26,7 +26,7 @@ class Main extends React.Component<Props, {}> {
           <div className="pantscircle">
             <p className="pantscount">{this.props.pants.current}</p>
             <div className="main-bottom">
-              <img src="images/push.png" alt="洗濯完了！" className="washed" />
+              <img onClick={this.handleClick} src="images/push.png" alt="洗濯完了！" className="washed" />
               <img src="images/senzai.png" alt="洗剤" className="senzai" />
               <Link to="/settings">
                 <img src="images/setting.png" alt="設定" className="setting" />

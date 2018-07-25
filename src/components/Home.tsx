@@ -12,15 +12,14 @@ interface State {
 
 interface Props {
   s: State;
-  handleClick: (e: Pants) => void;
-  handleClickSettings: () => void;
+  handleClickWashed: () => void;
 }
 
-const Home = ({ s, handleClickSettings }: Props) => (
+const Home = ({ s, handleClickWashed }: Props) => (
   <>
     <Header place={s.location} />
 
-    <Main handleClick={handleClickSettings} pants={s.pants} />
+    <Main handleClickWashed={handleClickWashed} pants={s.pants} />
 
     <WeeklyWeather count={s.pants.current} weather={s.weather} />
   </>

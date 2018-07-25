@@ -12,6 +12,12 @@ interface State {
   location: string;
 }
 
+interface SettingProps {
+  max: number;
+  current: number;
+  location: string;
+}
+
 class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
@@ -41,7 +47,7 @@ class App extends React.Component<{}, State> {
     console.log(this.state);
 
     this.handleClick = this.handleClick.bind(this);
-    this.handleClickSettings = this.handleClickSettings.bind(this);
+    this.handleClickWashed = this.handleClickWashed.bind(this);
   }
 
   handleClick(e: Pants & Location) {
@@ -64,15 +70,20 @@ class App extends React.Component<{}, State> {
             "Content-Type": "application/json; charset=utf-8"
           },
           // TODO FIX
-          body: JSON.stringify(this.state.pants)
+          body: JSON.stringify({
+            pants: this.state.pants,
+            location: this.state.location
+          })
         }).then(() => {
           localStorage.setItem("item",
             JSON.stringify({
-              pants: {
-                max: this.state.pants.max,
-                current: this.state.pants.current
-              }
+              pants: this.state.pants
             }))
+          localStorage.setItem("location",
+            JSON.stringify({
+              location: this.state.location
+            })
+          )
         });
 
         // TODO check is this code necessary?
@@ -92,22 +103,24 @@ class App extends React.Component<{}, State> {
     );
   }
 
-  handleClickSettings() {
+  handleClickWashed() {
     this.setState({
       pants: {
         ...this.state.pants,
         current: this.state.pants.max
-      }
+      },
     },
       () => {
         // update pants count
-        fetch("/api/items", {
+        fetch("/api/update", {
           method: "POST",
           credentials: "same-origin",
           headers: {
             "Content-Type": "application/json; charset=utf-8"
           },
-          body: JSON.stringify(this.state.pants)
+          body: JSON.stringify({
+            current: this.state.pants.current
+          })
         })
       })
   }
@@ -171,8 +184,7 @@ class App extends React.Component<{}, State> {
                   <Home
                     {...routeProps}
                     s={this.state}
-                    handleClick={this.handleClick}
-                    handleClickSettings={this.handleClickSettings}
+                    handleClickWashed={this.handleClickWashed}
                   />
                 )}
               />
