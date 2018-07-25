@@ -11,11 +11,11 @@ const Weather = ({ count, data, index }: Props) => {
   const _count = count < 0 ? 0 : count;
   
   var bgcolor;
-  if(data.rainprobability < 21){
+  if(Math.max(data.weatherAM9,data.weatherPM3) < 21){
     bgcolor = "orange";
-    }else if(data.rainprobability < 41){
+    }else if(Math.max(data.weatherAM9,data.weatherPM3) < 41){
       bgcolor = "yellow";
-    }else if(data.rainprobability < 61){
+    }else if(Math.max(data.weatherAM9,data.weatherPM3) < 61){
       bgcolor = "green";
     }else{
       bgcolor = "blue";
@@ -33,7 +33,7 @@ const Weather = ({ count, data, index }: Props) => {
         </p>
       </div>
       <div className="week-right">
-        <p className="pants-will">Pants Count：{_count}</p>
+        <p className="pants-will">この日のパンツ枚数：{_count}</p>
         <br />
         {data.weatherAM9 === "晴れ" ? (
           <img src="images/tenki-icon-sunny.png" />
