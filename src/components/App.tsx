@@ -22,34 +22,21 @@ class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
 
-    const json_token = JSON.parse(localStorage.getItem("token"));
-    const json_pants = JSON.parse(localStorage.getItem("pants"));
+    const local_token = JSON.parse(localStorage.getItem("token"));
+    const local_pants = JSON.parse(localStorage.getItem("pants"));
 
-    if (!!(json_token && json_token.token || null)) {
-      this.state = {
-        initial: false,
-        pants: json_pants && json_pants.pants || { max: 0, current: 0 },
-        weather: [...Array(10)],
-        location: ""
-      };
-    } else {
-      this.state = {
-        initial: true,
-        pants: {
-          max: 0,
-          current: 0
-        },
-        weather: [...Array(10)],
-        location: ""
-      }
+    this.state = {
+      initial: !!local_token && !!local_token.token || false,
+      pants: local_pants && local_pants.pants || { max: 0, current: 0 },
+      weather: [],
+      location: ""
     }
-
-    console.log(this.state);
 
     this.handleClick = this.handleClick.bind(this);
     this.handleClickWashed = this.handleClickWashed.bind(this);
   }
 
+  // Settings button is clicked
   handleClick(e: Pants & Location) {
     this.setState(
       {
@@ -69,12 +56,12 @@ class App extends React.Component<{}, State> {
           headers: {
             "Content-Type": "application/json; charset=utf-8"
           },
-          // TODO FIX
           body: JSON.stringify({
             pants: this.state.pants,
             location: this.state.location
           })
         }).then(() => {
+          // store data to localStorage
           localStorage.setItem("item",
             JSON.stringify({
               pants: this.state.pants
@@ -84,25 +71,23 @@ class App extends React.Component<{}, State> {
               location: this.state.location
             })
           )
-        });
-
-        // TODO check is this code necessary?
-        /*
-        fetch("/api/items", {
-          credentials: "same-origin"
-        })
-          .then((data: any): Data => data.json())
-          .then(json => {
-            this.setState({
-              weather: json.data.weather,
-              pants: json.data.pants
+        }).then(() => {
+          // fetch weather data
+          fetch("/api/weather", {
+            credentials: "same-origin"
+          }).then((data: any): WeatherData => data.json())
+            .then(json => {
+              this.setState({
+                weather: json.data.weather
+              })
             })
-          })
-          */
+        })
+
       }
     );
   }
 
+  // when washed button is clicked
   handleClickWashed() {
     this.setState({
       pants: {
@@ -128,27 +113,27 @@ class App extends React.Component<{}, State> {
 
   componentDidMount() {
     // register token to session cookie
-    const json_token = JSON.parse(localStorage.getItem("token"));
+    const local_token = JSON.parse(localStorage.getItem("token"));
     fetch("/api/token", {
       method: "POST",
       credentials: "same-origin",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
       },
-      body: json_token && JSON.stringify({ token: json_token.token }) || ""
+      body: local_token && JSON.stringify({ token: local_token.token }) || ""
     })
       .then((data: any): Token => data.json())
       .then(json => {
+        // TODO: check local_token.token === json.token
         localStorage.setItem("token", JSON.stringify({ token: json.token }));
       })
 
-    // not first access
+    // when not first access
     if (!this.state.initial) {
-      // TODO: get weather api
-      fetch("/api/items", {
+      fetch("/api/weather", {
         credentials: "same-origin"
       })
-        .then((data: any): Data => data.json())
+        .then((data: any): WeatherData => data.json())
         .then(json => {
           this.setState({
             weather: json.data.weather
@@ -161,11 +146,19 @@ class App extends React.Component<{}, State> {
       fetch("/api/items", {
         credentials: "same-origin"
       })
-        .then((data: any): Data => data.json())
+        .then((data: any): PantsData => data.json())
         .then(json => {
           this.setState({
             pants: json.data.pants
           })
+        })
+        .then(() => {
+          localStorage.setItem("item", JSON.stringify({ pants: this.state.pants }))
+        })
+        .then(() => {
+          console.log("why user does not have pants ???")
+        }).catch((e) => {
+          console.log(e);
         })
     }
   }

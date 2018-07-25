@@ -2,14 +2,26 @@ interface Token {
   token: string;
 }
 
-interface Data {
-  data: Items;
+interface WeatherData {
+  data: WeatherContainer;
 }
 
-interface Items {
+interface WeatherContainer {
   weather: Weather[];
+}
+
+interface PantsData {
+  data: PantsContainer;
+}
+
+interface PantsContainer {
   pants: Pants;
 }
+
+// interface Items {
+//   weather: Weather[];
+//   pants: Pants;
+// }
 
 interface Weather {
   date: string;
