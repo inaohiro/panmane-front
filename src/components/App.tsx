@@ -69,6 +69,27 @@ class App extends React.Component<Props, State> {
     );
   }
 
+  handleClickSettings() {
+    this.setState({
+      pants: {
+        ...this.state.pants,
+        current: this.state.pants.max
+      }
+    },
+      () => {
+        // update pants count
+        fetch("/api/items", {
+          method: "POST",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8"
+          },
+          body: JSON.stringify(this.state.pants)
+        })
+      })
+  }
+
+
   componentDidMount() {
     // TODO: little bit long, so split these to function
     // check localStorage, and State
@@ -141,12 +162,13 @@ class App extends React.Component<Props, State> {
                   {...routeProps}
                   s={this.state}
                   handleClick={this.handleClick}
+                  handleClickSettings={this.handleClickSettings}
                 />
               )}
             />
           ) : (
-            <Route exact path="/" render={() => <Tutorial />} />
-          )}
+              <Route exact path="/" render={() => <Tutorial />} />
+            )}
           <Route
             path="/settings"
             render={routeProps => (
