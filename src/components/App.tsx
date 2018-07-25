@@ -110,6 +110,9 @@ class App extends React.Component<{}, State> {
             }
           })
         })
+          .then(() => {
+            localStorage.setItem("item", JSON.stringify({ pants: this.state.pants }))
+          })
       })
   }
 
