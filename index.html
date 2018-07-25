@@ -50,28 +50,30 @@
         // This should call by addEventListener click
         messaging.requestPermission().then(function () {
             console.log("Notification permission granted.")
+
+            // token を取得
+            // 送信時に使う
+            messaging.getToken().then(function (currentToken) {
+                if (currentToken) {
+                    console.log(currentToken);
+                    // sendTokenToServer(currentToken);
+                    // updateUIForPushEnabled(currentToken);
+                } else {
+                    console.log("No Instance ID token available. Request permission to generate one.");
+
+                    // updateUIForPushPermissionRequired();
+                    // setTokenSentToServer(false);
+                }
+            }).catch(function (err) {
+                console.log("An error ocurred while retrieving token.", err);
+                // showToken("Error retrieving Instance ID token.", err);
+                // setTokenSentToServer(false);
+            })
         }).catch(function (err) {
             console.log("Unable to get permission to notify.", err)
         })
 
-        messaging.getToken().then(function (currentToken) {
-            if (currentToken) {
-                console.log(currentToken);
-                // sendTokenToServer(currentToken);
-                // updateUIForPushEnabled(currentToken);
-            } else {
-                console.log("No Instance ID token available. Request permission to generate one.");
 
-                // updateUIForPushPermissionRequired();
-                // setTokenSentToServer(false);
-            }
-        }).catch(function (err) {
-            console.log("An error ocurred while retrieving token.", err);
-            // showToken("Error retrieving Instance ID token.", err);
-            // setTokenSentToServer(false);
-        })
-
-        // いつ token は refresh されるんだ ...
         // Callback fired if Instance ID token is updated.
         messaging.onTokenRefresh(function () {
             messaging.getToken().then(function (refreshedToken) {
