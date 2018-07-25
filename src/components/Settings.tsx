@@ -13,6 +13,7 @@ interface Props {
   handleClick: (e: State) => void;
   max: number;
   current: number;
+  location: string;
 }
 
 class Settings extends React.Component<Props, State> {
@@ -25,7 +26,7 @@ class Settings extends React.Component<Props, State> {
     this.state = {
       max: this.props.max,
       current: this.props.current,
-      location: ""
+      location: this.props.location
     };
 
     this.handleClick = this.handleClick.bind(this);

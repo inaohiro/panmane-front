@@ -24,13 +24,14 @@ class App extends React.Component<{}, State> {
 
     const local_token = JSON.parse(localStorage.getItem("token"));
     const local_pants = JSON.parse(localStorage.getItem("item"));
+    const local_location = JSON.parse(localStorage.getItem("location"));
 
     // if token is not exist (!null -> true), initial should be true
     this.state = {
       initial: !local_token || false,
       pants: local_pants && local_pants.pants || { max: 0, current: 0 },
       weather: [],
-      location: ""
+      location: local_location && local_location.location || ""
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -196,6 +197,7 @@ class App extends React.Component<{}, State> {
                 handleClick={this.handleClick}
                 max={this.state.pants.max}
                 current={this.state.pants.current}
+                location={this.state.location}
               />
             )}
           />
