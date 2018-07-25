@@ -91,6 +91,7 @@ class Settings extends React.Component<Props, PropsState> {
         </li>
       </ul>
     </div>
+    </div>
         <Link to="/">
           <button
             className="btn"
