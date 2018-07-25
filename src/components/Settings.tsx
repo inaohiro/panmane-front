@@ -75,7 +75,7 @@ class Settings extends React.Component<Props, PropsState> {
         <li>
           <img src="images/pants-icon-clean.png"/>
           <div className="cp_ipselect cp_sl01">
-            <select value={this.state.clean} onChange={this.handleChange2}>
+            <select value={this.state.current} onChange={this.handleChange2}>
               <option value="" hidden>綺麗なパンツ枚数</option>
               <option value="0">0</option>
               <option value="1">1</option>
