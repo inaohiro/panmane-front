@@ -16,7 +16,7 @@ class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
 
-    const token = localStorage.getItem("token");
+    const token = JSON.parse(localStorage.getItem("token"));
     if (!!token) {
       this.state = {
         initial: false,
@@ -64,7 +64,7 @@ class App extends React.Component<{}, State> {
           // TODO FIX
           body: JSON.stringify(this.state.pants)
         }).then(() => {
-          localStorage.setItem("token",
+          localStorage.setItem("item",
             JSON.stringify({
               pants: {
                 max: this.state.pants.max,
@@ -113,7 +113,7 @@ class App extends React.Component<{}, State> {
 
   componentDidMount() {
     // register token to session cookie
-    const token = localStorage.getItem("token");
+    const token = JSON.parse(localStorage.getItem("token"));
     fetch("/api/token", {
       method: "POST",
       credentials: "same-origin",
@@ -124,7 +124,7 @@ class App extends React.Component<{}, State> {
     })
       .then((data: any): Token => data.json())
       .then(json => {
-        localStorage.setItem("token", json.token);
+        localStorage.setItem("token", JSON.stringify({ token: json.token }));
       })
 
     // not first access
