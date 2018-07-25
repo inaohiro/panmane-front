@@ -38,6 +38,8 @@ class App extends React.Component<{}, State> {
       }
     });
 
+    console.log(this.state);
+
 
     this.handleClick = this.handleClick.bind(this);
     this.handleClickSettings = this.handleClickSettings.bind(this);
