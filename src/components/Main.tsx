@@ -24,7 +24,6 @@ class Main extends React.Component<Props, {}> {
       <div className="main">
         <div className="maincircle">
           <div className="pantscircle">
-            <p className="pantscount-title">Pants Count</p>
             <p className="pantscount">{this.props.pants.current}</p>
             <div className="main-bottom">
               <img src="images/push.png" alt="洗濯完了！" className="washed" />
