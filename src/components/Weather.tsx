@@ -13,9 +13,9 @@ const Weather = ({ count, data, index }: Props) => {
   var bgcolor;
   if(data.rainprobability < 21){
     bgcolor = "orange";
-    }elseif(data.rainprobability < 41){
+    }else if(data.rainprobability < 41){
       bgcolor = "yellow";
-    }elseif(data.rainprobability < 61){
+    }else if(data.rainprobability < 61){
       bgcolor = "green";
     }else{
       bgcolor = "blue";
