@@ -45,8 +45,8 @@ class Settings extends React.Component<Props, PropsState> {
     return (
       <>
       
-      <div class="header">
-        <div class="main-title">設定</div>
+      <div className="header">
+        <div className="main-title">設定</div>
       </div>
       
       <div className="inner">
