@@ -122,7 +122,7 @@ class App extends React.Component<{}, State> {
       headers: {
         "Content-Type": "application/json; charset=utf-8"
       },
-      body: JSON.stringify({ token: json_token.token })
+      body: json_token && JSON.stringify({ token: json_token.token }) || ""
     })
       .then((data: any): Token => data.json())
       .then(json => {
