@@ -121,7 +121,6 @@ class Settings extends React.Component<Props, PropsState> {
       </div>
       <div className="here"><img src="images/nowplace.png" className="nowplace"/>&nbsp;現在地から</div>
       </div>
-    </div>
       
     <Link to="/">
       <div className="next"><span onClick={this.handleClick} className="ok">OK</span></div>
