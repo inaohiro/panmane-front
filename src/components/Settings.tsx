@@ -46,13 +46,13 @@ class Settings extends React.Component<Props, PropsState> {
       <>
       
       
-      <div class="main">
-      <div class="inner">
-        <img src="images/step1.png" class="stepimg">
+      <div className="main">
+      <div className="inner">
+        <img src="images/step1.png" className="stepimg"/>
         <p>あなたが持っている全てのパンツの枚数と今すぐ履ける綺麗なパンツの枚数を入力してください。</p>
-        <ul class="pants-selectbox">
+        <ul className="pants-selectbox">
           <li>
-          <img src="images/pants-icon-clean.png"/>
+          <img src="images/pants-icon-max.png"/>
           <div className="cp_ipselect cp_sl01">
             <select value={this.state.max} onChange={this.handleChange1}>
               <option value="" hidden>全てのパンツ枚数</option>
@@ -71,8 +71,8 @@ class Settings extends React.Component<Props, PropsState> {
           </div>
         </li>
         <li>
-          <img src="images/pants-icon-clean.png">
-          <div class="cp_ipselect cp_sl01">
+          <img src="images/pants-icon-clean.png"/>
+          <div className="cp_ipselect cp_sl01">
             <select value={this.state.current} onChange={this.handleChange2}>
               <option value="" hidden>綺麗なパンツ枚数</option>
               <option value="0">0</option>
