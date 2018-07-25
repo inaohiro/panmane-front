@@ -90,7 +90,7 @@ class Settings extends React.Component<Props, PropsState> {
           </div>
         </li>
       </ul>
-      <img src="images/step2.png" class="stepimg">
+      <img src="images/step2.png" className="stepimg"/>
       <p>あなたが洗濯物を干す地域を選択してください。</p>
       <div className="cp_ipselect2 cp_sl02">
         <select required>
