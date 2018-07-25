@@ -17,7 +17,7 @@ class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
 
-    get("item").then((val: any) => {
+    get("item").then(function (val: any) {
       if (!!val) {
         this.state = {
           initial: false,
