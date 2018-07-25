@@ -1,6 +1,5 @@
 import * as React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { set, get } from "idb-keyval";
 import Home from "./Home";
 import "../interfaces";
 import Tutorial from "./Tutorial";
@@ -17,30 +16,27 @@ class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
 
-    const _this = this;
-    get("item").then((val: any) => {
-      if (!!val) {
-        _this.state = {
-          initial: false,
-          pants: JSON.parse(val),
-          weather: [...Array(10)],
-          location: ""
-        };
-      } else {
-        _this.state = {
-          initial: true,
-          pants: {
-            max: 0,
-            current: 0
-          },
-          weather: [...Array(10)],
-          location: ""
-        }
+    const token = localStorage.getItem("token");
+    if (!!token) {
+      this.state = {
+        initial: false,
+        pants: JSON.parse(token),
+        weather: [...Array(10)],
+        location: ""
+      };
+    } else {
+      this.state = {
+        initial: true,
+        pants: {
+          max: 0,
+          current: 0
+        },
+        weather: [...Array(10)],
+        location: ""
       }
-    });
+    }
 
     console.log(this.state);
-
 
     this.handleClick = this.handleClick.bind(this);
     this.handleClickSettings = this.handleClickSettings.bind(this);
@@ -68,12 +64,13 @@ class App extends React.Component<{}, State> {
           // TODO FIX
           body: JSON.stringify(this.state.pants)
         }).then(() => {
-          set("item", JSON.stringify({
-            pants: {
-              max: this.state.pants.max,
-              current: this.state.pants.current
-            }
-          }))
+          localStorage.setItem("token",
+            JSON.stringify({
+              pants: {
+                max: this.state.pants.max,
+                current: this.state.pants.current
+              }
+            }))
         });
 
         // TODO check is this code necessary?
@@ -116,20 +113,19 @@ class App extends React.Component<{}, State> {
 
   componentDidMount() {
     // register token to session cookie
-    get("token").then((token) => {
-      fetch("/api/token", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8"
-        },
-        body: JSON.stringify({ token: token })
-      })
-        .then((data: any): Token => data.json())
-        .then(json => {
-          set("token", json.token);
-        })
+    const token = localStorage.getItem("token");
+    fetch("/api/token", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({ token: token })
     })
+      .then((data: any): Token => data.json())
+      .then(json => {
+        localStorage.setItem("token", json.token);
+      })
 
     // not first access
     if (!this.state.initial) {
