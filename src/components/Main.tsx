@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../interface";
+import "../interfaces";
 
 interface Props {
   handleClick: () => void;
