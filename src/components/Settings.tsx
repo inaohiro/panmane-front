@@ -46,7 +46,6 @@ class Settings extends React.Component<Props, PropsState> {
       <>
       
       
-      <div className="main">
       <div className="inner">
         <img src="images/step1.png" className="stepimg"/>
         <p>あなたが持っている全てのパンツの枚数と今すぐ履ける綺麗なパンツの枚数を入力してください。</p>
@@ -123,10 +122,10 @@ class Settings extends React.Component<Props, PropsState> {
       <div className="here"><img src="images/nowplace.png" class="nowplace">&nbsp;現在地から</div>
       </div>
     </div>
-    </div>
-      <Link to="/">
-        <div className="next"><span onClick={this.handleClick} className="ok">OK</span></div>
-      </Link>
+      
+    <Link to="/">
+      <div className="next"><span onClick={this.handleClick} className="ok">OK</span></div>
+    </Link>
         
           
         
