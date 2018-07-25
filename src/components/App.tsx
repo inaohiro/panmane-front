@@ -19,7 +19,7 @@ class App extends React.Component<{}, State> {
     const json_token = JSON.parse(localStorage.getItem("token"));
     const json_pants = JSON.parse(localStorage.getItem("pants"));
 
-    if (!!json_token.token) {
+    if (!!(json_token && json_token.token || null)) {
       this.state = {
         initial: false,
         pants: json_pants && json_pants.pants || { max: 0, current: 0 },
