@@ -24,7 +24,7 @@ const Weather = ({ count, data, index }: Props) => {
 
   return (
     <li
-      className={bgcolor};
+      className={bgcolor}
     >
       <div className="week-left">
         <p>
