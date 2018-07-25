@@ -31,6 +31,9 @@ const Weather = ({ count, data, index }: Props) => {
         ) : (
           <img src="images/tenki-icon-rain.png" alt="am-wether" />
         )}
+        <p>
+          <span>{data.rainprobabilityAM9}</span>%
+        </p>
         /
         {data.weatherPM3 === "晴れ" ? (
           <img src="images/tenki-icon-sunny.png" alt="am-wether" />
@@ -38,7 +41,7 @@ const Weather = ({ count, data, index }: Props) => {
           <img src="images/tenki-icon-rain.png" alt="am-wether" />
         )}
         <p>
-          <span>{data.rainprobability}</span>%
+          <span>{data.rainprobabilityPM3}</span>%
         </p>
       </div>
     </li>

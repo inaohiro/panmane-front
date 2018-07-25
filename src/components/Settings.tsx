@@ -45,6 +45,9 @@ class Settings extends React.Component<Props, PropsState> {
     return (
       <>
       
+      <div className="header">
+        <div className="main-title">設定</div>
+      </div>
       
       <div className="inner">
         <img src="images/step1.png" className="stepimg"/>
