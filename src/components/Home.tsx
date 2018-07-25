@@ -21,7 +21,7 @@ const Home = ({ s, handleClickWashed }: Props) => (
 
     <Main handleClickWashed={handleClickWashed} pants={s.pants} />
 
-    <WeeklyWeather count={s.pants.current} weather={s.weather} />
+    <WeeklyWeather location={s.location} count={s.pants.current} weather={s.weather} />
   </>
 );
 

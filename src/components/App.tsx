@@ -12,12 +12,6 @@ interface State {
   location: string;
 }
 
-interface SettingProps {
-  max: number;
-  current: number;
-  location: string;
-}
-
 class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);

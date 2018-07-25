@@ -5,9 +5,10 @@ import "../interfaces";
 interface Props {
   count: number;
   weather: Weather[];
+  location: string;
 }
 
-const WeeklyWeather = ({ count, weather }: Props) => (
+const WeeklyWeather = ({ location, count, weather }: Props) => (
   <div className="weekly-weather">
     <p className="weekly-weather-title">Weekly Weather</p>
     <div className="week-box">
