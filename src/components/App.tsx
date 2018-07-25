@@ -22,7 +22,7 @@ class App extends React.Component<{}, State> {
     if (!!json_token.token) {
       this.state = {
         initial: false,
-        pants: json_pants.pants || { max: 0, current: 0 },
+        pants: json_pants && json_pants.pants || { max: 0, current: 0 },
         weather: [...Array(10)],
         location: ""
       };
