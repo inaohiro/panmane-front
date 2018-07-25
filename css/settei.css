@@ -14,7 +14,7 @@ body{
   color: #fff;
 }
 
-p{
+.inner p{
   font-size: 0.7rem;
   font-weight: bold;
   margin: 8px auto 18px;
