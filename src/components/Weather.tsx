@@ -11,11 +11,11 @@ const Weather = ({ count, data, index }: Props) => {
   const _count = count < 0 ? 0 : count;
   
   var bgcolor;
-  if(Math.max(data.weatherAM9,data.weatherPM3) < 21){
+  if(Math.max(data.rainprobabilityAM9,data.rainprobabilityPM3) < 21){
     bgcolor = "orange";
-    }else if(Math.max(data.weatherAM9,data.weatherPM3) < 41){
+    }else if(Math.max(data.rainprobabilityAM9,data.rainprobabilityPM3) < 41){
       bgcolor = "yellow";
-    }else if(Math.max(data.weatherAM9,data.weatherPM3) < 61){
+    }else if(Math.max(data.rainprobabilityAM9,data.rainprobabilityPM3) < 61){
       bgcolor = "green";
     }else{
       bgcolor = "blue";
