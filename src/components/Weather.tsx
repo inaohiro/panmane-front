@@ -4,21 +4,21 @@ import "../interfaces";
 interface Props {
   count: number;
   data: Weather;
-  index: number;
 }
 
-const Weather = ({ count, data, index }: Props) => {
+const Weather = ({ count, data }: Props) => {
   const _count = count < 0 ? 0 : count;
-  
+
   var bgcolor;
-  if(Math.max(data.rainprobabilityAM9,data.rainprobabilityPM3) < 21){
+  console.log("data: ", data)
+  if (Math.max(data.rainprobabilityAM9, data.rainprobabilityPM3) < 21) {
     bgcolor = "orange";
-    }else if(Math.max(data.rainprobabilityAM9,data.rainprobabilityPM3) < 41){
-      bgcolor = "yellow";
-    }else if(Math.max(data.rainprobabilityAM9,data.rainprobabilityPM3) < 61){
-      bgcolor = "green";
-    }else{
-      bgcolor = "blue";
+  } else if (Math.max(data.rainprobabilityAM9, data.rainprobabilityPM3) < 41) {
+    bgcolor = "yellow";
+  } else if (Math.max(data.rainprobabilityAM9, data.rainprobabilityPM3) < 61) {
+    bgcolor = "green";
+  } else {
+    bgcolor = "blue";
   }
 
   return (
@@ -38,8 +38,8 @@ const Weather = ({ count, data, index }: Props) => {
         {data.weatherAM9 === "晴れ" ? (
           <img src="images/tenki-icon-sunny.png" />
         ) : (
-          <img src="images/tenki-icon-rain.png" />
-        )}
+            <img src="images/tenki-icon-rain.png" />
+          )}
         <p>
           <span>{data.rainprobabilityAM9}</span>%
         </p>
@@ -47,8 +47,8 @@ const Weather = ({ count, data, index }: Props) => {
         {data.weatherPM3 === "晴れ" ? (
           <img src="images/tenki-icon-sunny.png" />
         ) : (
-          <img src="images/tenki-icon-rain.png" />
-        )}
+            <img src="images/tenki-icon-rain.png" />
+          )}
         <p>
           <span>{data.rainprobabilityPM3}</span>%
         </p>

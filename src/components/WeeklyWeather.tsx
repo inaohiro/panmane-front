@@ -13,7 +13,7 @@ const WeeklyWeather = ({ count, weather }: Props) => (
     <div className="week-box">
       {weather.slice(0, weather.length - 1).map((w, index) => (
         // count should be decrease one by one
-        <Weather data={w} count={count - index} index={index} />
+        <Weather data={w} count={count - index} />
       ))}
     </div>
   </div>
