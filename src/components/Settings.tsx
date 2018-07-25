@@ -126,9 +126,7 @@ class Settings extends React.Component<Props, PropsState> {
     <Link to="/">
       <div className="next"><span onClick={this.handleClick} className="ok">OK</span></div>
     </Link>
-        
-          
-        
+      
         <Route path="/" compknent={App} />
       </>
     );
