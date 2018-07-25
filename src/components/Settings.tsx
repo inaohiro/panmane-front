@@ -44,39 +44,53 @@ class Settings extends React.Component<Props, PropsState> {
   render() {
     return (
       <>
-        <img src="images/pants-icon-clean.png"/>
-        <div className="cp_ipselect cp_sl01">
-        <select value={this.state.max} onChange={this.handleChange1}>
-          <option value="">全てのパンツ枚数</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-      </div>
-
-        <select value={this.state.current} onChange={this.handleChange2}>
-          <option value="">綺麗なパンツ枚数</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-
+      
+      
+      <div class="main">
+      <div class="inner">
+        <img src="images/step1.png" class="stepimg">
+        <p>あなたが持っている全てのパンツの枚数と今すぐ履ける綺麗なパンツの枚数を入力してください。</p>
+        <ul class="pants-selectbox">
+          <li>
+          <img src="images/pants-icon-clean.png"/>
+          <div className="cp_ipselect cp_sl01">
+            <select value={this.state.max} onChange={this.handleChange1}>
+              <option value="" hidden>全てのパンツ枚数</option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </li>
+        <li>
+          <img src="images/pants-icon-clean.png">
+          <div class="cp_ipselect cp_sl01">
+            <select value={this.state.current} onChange={this.handleChange2}>
+              <option value="" hidden>綺麗なパンツ枚数</option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </li>
+      </ul>
+    </div>
         <Link to="/">
           <button
             className="btn"
