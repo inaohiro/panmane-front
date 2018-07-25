@@ -12,6 +12,12 @@ interface State {
   location: string;
 }
 
+interface PantsLocation {
+  max: number;
+  current: number;
+  location: string;
+}
+
 class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
@@ -19,8 +25,9 @@ class App extends React.Component<{}, State> {
     const local_token = JSON.parse(localStorage.getItem("token"));
     const local_pants = JSON.parse(localStorage.getItem("pants"));
 
+    // if token is not exist (!null -> true), initial should be true
     this.state = {
-      initial: !!local_token && !!local_token.token || false,
+      initial: !local_token || false,
       pants: local_pants && local_pants.pants || { max: 0, current: 0 },
       weather: [],
       location: ""
@@ -31,7 +38,7 @@ class App extends React.Component<{}, State> {
   }
 
   // Settings button is clicked
-  handleClick(e: Pants & Location) {
+  handleClick(e: PantsLocation) {
     this.setState(
       {
         initial: false,
@@ -51,7 +58,7 @@ class App extends React.Component<{}, State> {
             "Content-Type": "application/json; charset=utf-8"
           },
           body: JSON.stringify({
-            pants: this.state.pants,
+            item: this.state.pants,
             location: this.state.location
           })
         }).then(() => {
@@ -98,7 +105,9 @@ class App extends React.Component<{}, State> {
             "Content-Type": "application/json; charset=utf-8"
           },
           body: JSON.stringify({
-            current: this.state.pants.current
+            item: {
+              current: this.state.pants.current
+            }
           })
         })
       })
