@@ -206,8 +206,9 @@ body{
 
 .week-box img{
   display: inline-block;
-  vertical-align: middle;
   height: 23px;
+  margin: auto 3%;
+  vertical-align: middle;
 }
 
 .week-left,.week-right{
