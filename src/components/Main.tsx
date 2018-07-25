@@ -20,6 +20,8 @@ const Main = ({ current }: Props) => (
       <img src="images/senzai.png" alt="洗剤" className="senzai"/>
       <img src="images/setting.png" alt="設定" className="setting"/>
     </div>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   </div>
   
   
