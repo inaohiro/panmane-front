@@ -31,6 +31,7 @@ class App extends React.Component<Props, State> {
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleClickSettings = this.handleClickSettings.bind(this);
   }
 
   handleClick(e: Pants) {
