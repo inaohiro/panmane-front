@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import "../interfaces";
 
 interface Props {
@@ -19,6 +20,32 @@ class Main extends React.Component<Props, {}> {
 
   render() {
     return (
+
+      <div className="main">
+        <div className="maincircle">
+          <div className="pantscircle">
+            <p className="pantscount-title">Pants Count</p>
+            <p className="pantscount">{this.props.pants.current}</p>
+            <div className="main-bottom">
+              <img src="images/push.png" alt="洗濯完了！" className="washed" />>
+      <img src="images/senzai.png" alt="洗剤" className="senzai" />>
+      <Link to="/settings">
+                <img src="images/setting.png" alt="設定" className="setting" />>
+      </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    )
+  }
+
+}
+
+
+export default Main;
+
+{/*
       <div className="main">
         <div className="graph">
           <div id="progressive-circle01" className="chart pantsmater"></div>
@@ -31,11 +58,4 @@ class Main extends React.Component<Props, {}> {
           <img src="images/setting.png" alt="設定" className="setting" />
         </div>
       </div>
-
-    )
-  }
-
-}
-
-
-export default Main;
+      */}
