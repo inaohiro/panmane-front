@@ -6,7 +6,7 @@ interface Props {
 
 const Header = ({ place }: Props) => (
   <div className="header">
-    <div className="place">{place}</div>
+    <div className="place">残りパンツ数</div>
   </div>
 );
 
