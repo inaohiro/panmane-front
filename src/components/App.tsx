@@ -17,16 +17,17 @@ class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
 
-    get("item").then(function (val: any) {
+    const _this = this;
+    get("item").then((val: any) => {
       if (!!val) {
-        this.state = {
+        _this.state = {
           initial: false,
           pants: JSON.parse(val),
           weather: [...Array(10)],
           location: ""
         };
       } else {
-        this.state = {
+        _this.state = {
           initial: true,
           pants: {
             max: 0,
