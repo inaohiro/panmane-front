@@ -40,6 +40,11 @@ interface Pants {
   current: number;
 }
 
+interface LocatoinContainer {
+  location: Location;
+}
+
 interface Location {
-  location: string;
+  en: string;
+  ja: string;
 }

@@ -9,13 +9,13 @@ interface State {
   initial: boolean;
   pants: Pants;
   weather: Weather[];
-  location: string;
+  location: Location;
 }
 
-interface PantsLocation {
+interface SettingsParams {
   max: number;
   current: number;
-  location: string;
+  location_en: string;
 }
 
 class App extends React.Component<{}, State> {
@@ -31,7 +31,7 @@ class App extends React.Component<{}, State> {
       initial: !local_token || false,
       pants: local_pants && local_pants.pants || { max: 0, current: 0 },
       weather: [],
-      location: local_location && local_location.location || ""
+      location: local_location && local_location.location || { en: "", ja: "" }
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -39,11 +39,14 @@ class App extends React.Component<{}, State> {
   }
 
   // Settings button is clicked
-  handleClick(e: PantsLocation) {
+  handleClick(e: SettingsParams) {
     this.setState(
       {
         initial: false,
-        location: e.location,
+        location: {
+          ...this.state.location,
+          en: e.location_en
+        },
         pants: {
           ...this.state.pants,
           max: e.max,
@@ -80,7 +83,11 @@ class App extends React.Component<{}, State> {
           }).then((data: any): WeatherData => data.json())
             .then(json => {
               this.setState({
-                weather: json.data.weather
+                weather: json.data.weather,
+                location: {
+                  ...this.state.location,
+                  ja: (String)(json.data.weather.slice(-1))
+                }
               })
             })
         })
@@ -144,6 +151,7 @@ class App extends React.Component<{}, State> {
         .then(json => {
           this.setState({
             weather: json.data.weather
+            // location.ja
           })
         })
     }
@@ -197,7 +205,7 @@ class App extends React.Component<{}, State> {
                 handleClick={this.handleClick}
                 max={this.state.pants.max}
                 current={this.state.pants.current}
-                location={this.state.location}
+                location_en={this.state.location.en}
               />
             )}
           />

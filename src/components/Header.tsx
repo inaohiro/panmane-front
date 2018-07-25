@@ -1,10 +1,6 @@
 import * as React from "react";
 
-interface Props {
-  place: string;
-}
-
-const Header = ({ place }: Props) => (
+const Header = () => (
   <div className="header">
     <div className="place">残りパンツ数</div>
   </div>

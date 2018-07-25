@@ -6,14 +6,14 @@ import App from "./App";
 interface State {
   max: number;
   current: number;
-  location: string;
+  location_en: string;
 }
 
 interface Props {
   handleClick: (e: State) => void;
   max: number;
   current: number;
-  location: string;
+  location_en: string;
 }
 
 class Settings extends React.Component<Props, State> {
@@ -26,7 +26,7 @@ class Settings extends React.Component<Props, State> {
     this.state = {
       max: this.props.max,
       current: this.props.current,
-      location: this.props.location
+      location_en: this.props.location_en
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -44,14 +44,14 @@ class Settings extends React.Component<Props, State> {
   }
 
   handleChangeLocation(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.setState({ location: event.target.value })
+    this.setState({ location_en: event.target.value })
   }
 
   handleClick() {
     this.props.handleClick({
       max: this.state.max,
       current: this.state.current,
-      location: this.state.location
+      location_en: this.state.location_en
     });
   }
 
@@ -109,7 +109,7 @@ class Settings extends React.Component<Props, State> {
           <img src="images/step2.png" className="stepimg" />
           <p>あなたが洗濯物を干す地域を選択してください。</p>
           <div className="cp_ipselect2 cp_sl02">
-            <select value={this.state.location} onChange={this.handleChangeLocation} required>
+            <select value={this.state.location_en} onChange={this.handleChangeLocation} required>
               <option value="" hidden>市町村</option>
               <option value="adachi">足立区</option>
               <option value="arakawa">荒川区</option>
