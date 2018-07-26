@@ -99,8 +99,9 @@ body{
   cursor: pointer;
   margin: 0 auto;
   position: absolute;
+  top: -35px;
   right: 0;
-  width: 80px;
+  width: 140px;
 }
 
 .senzai{
