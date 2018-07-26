@@ -9,6 +9,10 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
+self.addEventListener('activate', event => {
+  console.log('activate');
+});
+
 // self.addEventListener("push", function (event) {
 //   event.waitUntil(
 //     self.registration.showNotification(event.data.json().notification.title, {

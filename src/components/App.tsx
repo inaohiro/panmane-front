@@ -141,6 +141,17 @@ class App extends React.Component<{}, State> {
         // TODO: check local_token.token === json.token
         localStorage.setItem("token", JSON.stringify({ token: json.token }));
       })
+      .then(() => {
+        const ntoken = localStorage.getItem("ntoken");
+        fetch("/api/notification", {
+          method: "POST",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: ntoken
+        })
+      })
 
     // when not first access
     if (!this.state.initial) {
