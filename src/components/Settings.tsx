@@ -49,8 +49,8 @@ class Settings extends React.Component<Props, State> {
 
   handleClick() {
     this.props.handleClick({
-      max: this.state.max,
-      current: this.state.current,
+      max: this.state.max < 0 ? 0 : this.state.max,
+      current: this.state.current < 0 ? 0 : this.state.current,
       location_en: this.state.location_en
     });
   }
@@ -71,7 +71,7 @@ class Settings extends React.Component<Props, State> {
               <img src="images/pants-icon-max.png" />
               <div className="cp_ipselect cp_sl01">
                 <select value={this.state.max} onChange={this.handleChangeMax}>
-                  <option value="" hidden>全てのパンツ枚数</option>
+                  <option value="-1" hidden>全てのパンツ枚数</option>
                   <option value="0">0</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -90,7 +90,7 @@ class Settings extends React.Component<Props, State> {
               <img src="images/pants-icon-clean.png" />
               <div className="cp_ipselect cp_sl01">
                 <select value={this.state.current} onChange={this.handleChangeCurrent}>
-                  <option value="" hidden>綺麗なパンツ枚数</option>
+                  <option value="-1" hidden>綺麗なパンツ枚数</option>
                   <option value="0">0</option>
                   <option value="1">1</option>
                   <option value="2">2</option>

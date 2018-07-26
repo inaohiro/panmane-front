@@ -29,7 +29,7 @@ class App extends React.Component<{}, State> {
     // if token is not exist (!null -> true), initial should be true
     this.state = {
       initial: !local_token || false,
-      pants: local_pants && local_pants.pants || { max: 0, current: 0 },
+      pants: local_pants && local_pants.pants || { max: -1, current: -1 },
       weather: [],
       location: local_location && local_location.location || { en: "", ja: "" }
     }
