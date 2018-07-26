@@ -23,6 +23,16 @@
     <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-messaging.js"></script>
     <script>
+        function sendTokenToServer(token) {
+            fetch("/api/notification", {
+                method: "POST",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ notification: token })
+            })
+        }
         // Initialize Firebase
         var config = {
             apiKey: "AIzaSyAxFDFtSxlb_46Y0fINru1UB6WhstqhPF4",
@@ -55,7 +65,7 @@
             messaging.getToken().then(function (currentToken) {
                 if (currentToken) {
                     console.log(currentToken);
-                    // sendTokenToServer(currentToken);
+                    sendTokenToServer(currentToken);
                     // updateUIForPushEnabled(currentToken);
                 } else {
                     console.log("No Instance ID token available. Request permission to generate one.");
@@ -81,7 +91,7 @@
                 // app server.
                 // setTokenSentToServer(false);
                 // Send Instance ID token to app server.
-                // sendTokenToServer(refreshedToken);
+                sendTokenToServer(refreshedToken);
                 // ...
             }).catch(function (err) {
                 console.log('Unable to retrieve refreshed token ', err);
