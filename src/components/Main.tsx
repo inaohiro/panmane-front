@@ -16,8 +16,9 @@ class Main extends React.Component<Props, {}> {
   }
 
   handleClick() {
+    var _this = this;
     var change = function(){
-      this.props.handleClickWashed();
+      _this.props.handleClickWashed();
     }
     setTimeout(change, 1000);
     
