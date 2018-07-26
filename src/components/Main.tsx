@@ -17,13 +17,11 @@ class Main extends React.Component<Props, {}> {
 
   handleClick() {
     this.props.handleClickWashed();
-    $(function(){
       $('img[src="images/before_button_splash.png"]').attr('src','images/button_splash.gif');
       var imgfalse = function(){
         $('img[src="images/button_splash.gif"]').attr('src','images/before_button_splash.png');
       } 
       setTimeout(imgfalse, 2500);
-    });
   }
 
   render() {
