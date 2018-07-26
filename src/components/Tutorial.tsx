@@ -7,7 +7,7 @@ const Tutorial = () => (
   <>
     
     <video id="video" poster="movie_bg.jpg">
-      <source src="video/tutrial_all.mp4" type="video/mp4"/>
+      <source src="images/tutrial_all.mp4" type="video/mp4"/>
       <p>video要素がサポートされていないブラウザでご覧になっています。</p>
     </video>
     <Link to="/settings">
