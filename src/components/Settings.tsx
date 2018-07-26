@@ -116,7 +116,7 @@ class Settings extends React.Component<Props, State> {
               <option value="itabashi">板橋区</option>
               <option value="edogawa">江戸川区</option>
               <option value="oota">大田区</option>
-              <option value="kasai">葛西区</option>
+              <option value="kasai">葛飾区</option>
               <option value="kita">北区</option>
               <option value="etou">江東区</option>
               <option value="sinagawa">品川区</option>
