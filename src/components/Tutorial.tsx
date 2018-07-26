@@ -11,7 +11,7 @@ const Tutorial = () => (
       <p>video要素がサポートされていないブラウザでご覧になっています。</p>
     </video>
     <Link to="/settings">
-      <div className="next"><span class="ok">OK</span></div>
+      <div className="next"><span className="ok">OK</span></div>
     </Link>
   </>
 );
