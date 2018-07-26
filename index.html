@@ -98,6 +98,11 @@
                 // showToken('Unable to retrieve refreshed token ', err);
             });
         });
+
+        messaging.onMessage(function (payload) {
+            console.log('Messsage received', payload)
+
+        })
     </script>
     <script src="./dist/bundle.js"></script>
 

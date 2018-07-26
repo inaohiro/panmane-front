@@ -31,12 +31,3 @@ messaging.setBackgroundMessageHandler(function (payload) {
   return self.registration.showNotification(notificationTitle,
     notificationOptions);
 });
-
-
-// self.addEventListener('notificationclick', function (event) {
-//   const clickedNotification = event.notification;
-//   clickedNotification.close();
-// 
-//   // const promiseChain = doSomething();
-//   event.waitUntil(promiseChain);
-// })
