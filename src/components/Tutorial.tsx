@@ -6,7 +6,7 @@ import "../interfaces";
 const Tutorial = () => (
   <>
     
-    <video id="video" poster="movie_bg.jpg">
+    <video id="video" poster="images/button_splash.gif">
       <source src="images/tutrial_all.mp4" type="video/mp4"/>
       <p>video要素がサポートされていないブラウザでご覧になっています。</p>
     </video>
