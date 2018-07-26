@@ -32,6 +32,12 @@ class Main extends React.Component<Props, {}> {
 
   render() {
     return (
+      
+      <div className="graph">
+      <div id="progressive-circle01" className="chart pantsmater"></div>
+      <div id="progressive-circle02" className="chart"></div>
+      <p className="min">min</p><p class="max">max</p>
+    </div>
 
       <div className="main">
         <div className="maincircle">
