@@ -6,8 +6,8 @@ import "../interfaces";
 const Tutorial = () => (
   <>
     
-    <video id="video">
-      <source src="images/tutrial_all.mp4" type="video/mp4" autoPlay />
+    <video id="video" autoPlay="">
+      <source src="images/tutrial_all.mp4" type="video/mp4" />
       <p>video要素がサポートされていないブラウザでご覧になっています。</p>
     </video>
     <Link to="/settings">
