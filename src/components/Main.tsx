@@ -20,7 +20,7 @@ class Main extends React.Component<Props, {}> {
     var change = function(){
       _this.props.handleClickWashed();
     }
-    setTimeout(change, 400);
+    setTimeout(change, 500);
     
     $('img[src="images/before_button_splash.png"]').attr('src','images/button_splash.gif');
     var imgfalse = function(){
