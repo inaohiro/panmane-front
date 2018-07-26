@@ -21,7 +21,7 @@ class Main extends React.Component<Props, {}> {
       var imgfalse = function(){
         $('img[src="images/button_splash.gif"]').attr('src','images/before_button_splash.png');
       } 
-      setTimeout(imgfalse, 2500);
+      setTimeout(imgfalse, 2000);
   }
 
   render() {
