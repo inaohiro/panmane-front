@@ -6,12 +6,12 @@ import "../interfaces";
 const Tutorial = () => (
   <>
     
-    <video id="video" poster="movie_bg.jpg" muted autoplay loop>
+    <video id="video" poster="movie_bg.jpg">
       <source src="/tutrial_all.mp4" type="video/mp4"/>
       <p>video要素がサポートされていないブラウザでご覧になっています。</p>
     </video>
     <Link to="/settings">
-      <div class="next"><span class="ok">OK</span></div>
+      <div className="next"><span class="ok">OK</span></div>
     </Link>
   </>
 );
