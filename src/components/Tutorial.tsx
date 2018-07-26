@@ -5,12 +5,13 @@ import "../interfaces";
 // TODO: lazy loading
 const Tutorial = () => (
   <>
-    <h1>Tutorial</h1>
-
+    
+    <video id="video" poster="movie_bg.jpg" muted autoplay loop>
+      <source src="/tutrial_all.mp4" type="video/mp4">
+      <p>video要素がサポートされていないブラウザでご覧になっています。</p>
+    </video>
     <Link to="/settings">
-      <button type="button" className="btn">
-        Next
-      </button>
+      <div class="next"><span class="ok">OK</span></div>
     </Link>
   </>
 );
