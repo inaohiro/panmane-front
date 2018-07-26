@@ -149,7 +149,7 @@ class App extends React.Component<{}, State> {
           headers: {
             "Content-Type": "application/json"
           },
-          body: ntoken
+          body: JSON.stringify({ notification: ntoken })
         })
       })
 
