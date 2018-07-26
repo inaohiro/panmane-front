@@ -143,14 +143,17 @@ class App extends React.Component<{}, State> {
       })
       .then(() => {
         const ntoken = localStorage.getItem("ntoken");
-        fetch("/api/notification", {
-          method: "POST",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ notification: ntoken })
-        })
+        if (!!ntoken) {
+          fetch("/api/notification", {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ notification: ntoken })
+          })
+
+        }
       })
 
     // when not first access

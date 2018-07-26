@@ -24,14 +24,14 @@
     <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-messaging.js"></script>
     <script>
         function sendTokenToServer(token) {
-            // fetch("/api/notification", {
-            //     method: "POST",
-            //     credentials: "same-origin",
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: JSON.stringify({ notification: token })
-            // })
+            fetch("/api/notification", {
+                method: "POST",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ notification: token })
+            })
             localStorage.setItem("ntoken", token);
         }
         // Initialize Firebase
