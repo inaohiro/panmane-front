@@ -7,7 +7,7 @@ const Tutorial = () => (
   <>
     
     <video id="video">
-      <source src="images/tutrial_all.mp4" type="video/mp4" autoplay loop />
+      <source src="images/tutrial_all.mp4" type="video/mp4" autoPlay />
       <p>video要素がサポートされていないブラウザでご覧になっています。</p>
     </video>
     <Link to="/settings">
