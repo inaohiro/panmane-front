@@ -14,10 +14,15 @@ body{
   //background: linear-gradient(120deg, #a5f1fa, #69ced9);
 }
 
-video{
-  margin: 0 auto;
+.wrap{
+  width: 100%;
   text-align: center;
-  width: 90%;
+}
+
+video{
+  margin-top: 10%;
+  text-align: center;
+  width: 80%;
 }
 
 .header{
